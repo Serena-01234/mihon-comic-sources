@@ -1,0 +1,8 @@
+# 构建产物
+build/
+.gradle/
+*.iml
+local.properties
+# 签名材料绝不入库
+signingkey.jks
+keystore_password.txt

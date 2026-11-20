@@ -1,0 +1,59 @@
+id,name,base_url,priority,status,upstream_module,evidence
+01,🏷🎨番茄漫画(APP),https://fanqienovel.com,P2,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
+02,📘🎨KL-Manga,https://klmanga.tips,P2,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+03,🎨嬉皮漫画,https://m.hipmh.com,P2,covered_upstream,xipimanhua,Keiyoushi src/zh/xipimanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+04,🔞🎨禁漫天堂API,https://www.cdngwc.cc,P2,needs_login,,禁漫 API 需 x-argus 签名 + 登录态，匿名搜索页 403
+05,🎨🔞禁漫大王,https://jmdw7.com,P2,dead,,搜索路径 404，站点已改版
+06,🎨看漫,https://m.kanman.com,P1,covered_upstream,kanman,Keiyoushi src/zh/kanman 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+07,🎨G社漫画/包子漫画,https://manhuafree.com,P1,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
+08,🎨再漫画,https://manhua.zaimanhua.com,P1,covered_upstream,zaimanhua,Keiyoushi src/zh/zaimanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+09,🎨拷贝漫画,https://www.kaobei.org,P1,needs_js,,kaobei.org 与上游 mangacopy 域名不同，搜索规则含 JS，需单独还原接口
+10,包子漫画（优+++）,https://cn.bzmanga.com,P1,converted_verified,src/zh/baozimhcn,原生 Kotlin 扩展，release APK 编译通过；选择器自测全绿：首页 144 项 / 搜索 85 项 / 详情 5 字段 / 章节 730 条 / 单章 16 图 200 webp 226KB
+11,🎨久久漫画,https://www.jjmhw.cc,P2,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
+12,🎨🔞污污漫画,https://www.wu55comic.store,P2,needs_login,,站点 403，源内含登录脚本
+13,🎨看漫,https://m.kanman.com,P2,covered_upstream,kanman,Keiyoushi src/zh/kanman 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+14,🎨🔞Cin漫,https://cin.onl,P2,needs_api,,搜索规则为 JSONPath（$..），需还原站点接口
+15,🎨漫客栈,https://www.mkzhan.com,P1,needs_login,,"章节图片接口 comic.mkzcdn.com 返回 {""code"":""302"",""message"":""用户未登录""}"
+16,🎨MY漫画辞晨,https://mycomic.com/cn,P2,covered_upstream,mycomic,Keiyoushi src/zh/mycomic 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+17,🎨🔞开心看漫画,https://kxmanhua.com,P1,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+18,吉站漫画（优+++）,https://m.g-mh.org,P2,needs_api,,搜索/详情是 CSS 可解析，但 tocUrl 指向 api-get-v3.mgsearcher.com，章节与图片全在该接口，需还原 mid/chapter id 两段 API
+19,🎨新漫画,https://xapi.xinmanhua.net,P2,needs_api,,xapi.xinmanhua.net 是 App API 主机，GET 搜索路径返回 404
+20,🎨拷贝漫画,https://www.mangacopy.com,P1,covered_upstream,kaobeimanhua,Keiyoushi src/zh/kaobeimanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+21,🎨滴滴漫画,https://www.didimh.com,P2,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
+22,🎨知音漫客,https://m.zymk.cn,P1,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+23,🎨🔞腐漫,https://www.fumanmanhua.com,P2,converted_verified,src/zh/fuman,原生 Kotlin 扩展已编译并逐项实测：搜索/详情/章节/图片
+24,🎨新人漫画,https://xapi.xinmanhua.net,P2,needs_api,,xapi.xinmanhua.net 同上，需还原 App 接口
+25,🎨🔞污漫天堂,https://wumtt.com,P2,dead,,wumtt.com 连接被重置
+26,🎨🔞大人漫画,https://drmh3.com,P2,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+27,🎨🔞Nhentai漫,https://ch.hentai-one.com,P2,needs_manual_port,,规则使用 XPath（//div[contains(...)]），为阅读 APP 专有语法，需人工改写为 CSS
+28,🎨🔞连连看漫画,https://www.hmmfk.com,P2,converted_verified,src/zh/hmmfk,原生 Kotlin 扩展，release APK 编译通过；选择器自测全绿：列表 27 项 / 搜索 16 项 / 详情 5 字段 / 章节 38 条 / 单章 10 图 200 webp
+29,🎨🔞肉肉漫画,https://18rouman.org,P2,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+30,🎨漫画小屋,https://m.dm5.com,P1,covered_upstream,dm5,Keiyoushi src/zh/dm5 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+31,🎨🔞秘密韩漫-夜明空,https://mimihanman.com,P2,needs_login,,源内含登录流程，搜索页需登录
+32,🎨漫画吧网,https://www.manhuaba.com,P2,needs_js,,搜索 38 项、详情 64 章可解析，但阅读页 #images 为空，图片由 pic-v2.js（jsjiami v7 混淆 + crypto-js）解密，需逆向
+33,🎨快看漫画,https://m.kuaikanmanhua.com,P1,covered_upstream,kuaikanmanhua,Keiyoushi src/zh/kuaikanmanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+34,🎨🔞漫小肆,https://www.jjmh.top,P2,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+35,🎨🔞18禁漫,https://m.18mhx.com,P2,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
+36,🎨🔞友漫画,https://www.seyoumanhua.top,P2,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+37,漫画小屋（优）,https://m.dm.com,P1,dead,,m.dm.com 域名不存在（DNS 解析失败）
+38,🎨武芊漫画,https://comic.mkzcdn.com,P2,needs_api,,搜索规则为 JSONPath（$..），需还原站点接口
+39,全免漫画（优）,https://api-cdn.kaimanhua.com,P2,needs_api,,搜索规则为 JSONPath（$..），需还原站点接口
+40,🎨全免漫画,https://api-cdn.kaimanhua.com,P2,needs_api,,搜索规则为 JSONPath（$..），需还原站点接口
+41,🎨漫客栈,http://comic.mkzhan.com,P1,needs_login,,同上，漫客栈章节接口强制登录
+42,🎨咚漫,https://m.dongmanmanhua.cn,P1,covered_upstream,dongmanmanhua,Keiyoushi src/zh/dongmanmanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+43,🎨漫客栈,https://www.mkzhan.com,P1,needs_login,,同上，漫客栈章节接口强制登录
+44,🎨漫画搬运,https://www.antbyw.com,P2,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
+45,🎨拷贝漫画,https://www.mangacopy.com,P1,covered_upstream,kaobeimanhua,Keiyoushi src/zh/kaobeimanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+46,🎨阿吧漫画,https://www.abamhc2.click,P2,needs_login,,源内含登录脚本，搜索需登录态
+47,🎨178漫画网-幕惜,https://www.patternrecognition.cn,P2,needs_api,,搜索/详情/章节可解析（30 章），但图片带 auth_key=1664504087（2022 年）已过期，实测 403，需站内代理或重签
+48,🎨毒牙漫画,http://www.duya.cc,P2,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
+49,🎨漫畫狗网,https://dogemanga.com,P2,covered_upstream,dogemanga,Keiyoushi src/zh/dogemanga 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+50,🎨漫画吧网,https://www.manhuaba.com,P2,needs_js,,与 32 同站同规则，阅读页图片走 pic-v2.js 解密
+51,🎨快看漫画,https://m.kuaikanmanhua.com,P1,covered_upstream,kuaikanmanhua,Keiyoushi src/zh/kuaikanmanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+52,漫客栈,https://comic.mkzhan.com,P1,needs_login,,同上，漫客栈章节接口强制登录
+53,🎨丁斐,https://getconfig-globalapi.yyhao.com,P2,needs_api,,搜索规则为 JSONPath（$..），需还原站点接口
+54,酸奶漫画,https://m.kkk.com,P2,covered_upstream,jisumanhua,Keiyoushi src/zh/jisumanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
+55,漫客栈◎辞晨◎,https://m.mkzhan.com,P1,needs_login,,同上，且源内含登录脚本
+56,🍅大灰狼漫画5.0(vip独立版),http://219.154.201.122:5006,P2,dead,,私有 IP 主机 219.154.201.122:5006 拒绝连接，VIP 独立版无公开入口
+57,妙华台藏（优）,https://m.manhuatai.com,P2,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
+58,🎨酸奶漫画,https://m.1kkk.com,P2,covered_upstream,jisumanhua,Keiyoushi src/zh/jisumanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
