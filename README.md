@@ -20,7 +20,7 @@
 | 连连看漫画（hmmfk.com） | **已编译 + 9 项自测全绿**：列表 27 / 搜索 16 / 章节 38 / 图片 10 张 200 webp |
 | 包子漫画简中（cn.bzmanga.com） | **已编译 + 10 项自测全绿**：首页 144 / 搜索 85 / 章节 730 / 图片 200 webp |
 | 腐漫（fumanmanhua.com） | **已移植但站点图片域名失效，已隔离不上架**：`img.uumanhua.xyz` NXDOMAIN，见 `quarantine/fuman/QUARANTINE.md` |
-| 其余 56 条 | 逐条给出处理结论与证据，见 `catalog/conversion-status.csv` |
+| 其余 55 条（含已隔离的腐漫） | 逐条给出处理结论与证据，见 `catalog/conversion-status.csv` |
 
 ## 安装步骤
 

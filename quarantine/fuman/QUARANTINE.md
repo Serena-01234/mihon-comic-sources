@@ -13,7 +13,7 @@
 | `img.uumanhua.xyz` DNS | **NXDOMAIN**（阿里 DNS DoH 与 DNSPod DoH 均 `Status 3`，权威 SOA 为 `xyz.` TLD） |
 | 根域 `uumanhua.xyz` DNS | 同样 NXDOMAIN，说明域名已不存在，不是解析污染或地区限制 |
 | 主域是否代理图片 | `https://www.fumanmanhua.com/bookimages/...` → 404 |
-| 抽样范围 | 4 部漫画、5 个章节，图片域名无一例外 |
+| 抽样范围 | 4 部漫画（各取首章并抽查相邻章），图片域名无一例外 |
 
 页面本身提示换域名为 `www.uuwangzhi.com`，该域名同样无法解析，属于站点侧的域名问题，扩展无法修复。
 
