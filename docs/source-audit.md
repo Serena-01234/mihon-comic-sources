@@ -19,12 +19,12 @@
 
 | status | 数量 | 判定依据 |
 | --- | --- | --- |
-| `converted_verified` | 1 | 已写成 Kotlin，编译通过，四环节实测通过 |
+| `converted_verified` | 2 | 已写成 Kotlin，编译通过，四环节线上实测通过（连连看、包子漫画简中） |
+| `converted_site_broken` | 1 | 已写成 Kotlin 并编译通过，但站点图片域名 NXDOMAIN，隔离不上架（腐漫） |
 | `covered_upstream` | 14 | Keiyoushi `src/zh/*` 的 baseUrl/host 与本条一致 |
-| `portable_pending` | 6 | 搜索规则可静态解析且实测有结果，尚未写 Kotlin |
 | `needs_login` | 9 | 章节/搜索接口返回未登录，或源内含登录脚本 |
-| `needs_api` | 7 | 搜索规则是 JSONPath 或 App API 主机 |
-| `needs_js` | 8 | `@js` 脚本或页面 JS 渲染 |
+| `needs_api` | 9 | 搜索规则是 JSONPath 或 App API 主机 |
+| `needs_js` | 10 | `@js` 脚本或页面 JS 渲染 |
 | `empty` | 8 | 请求成功但选择器未命中（改版/需 POST） |
 | `dead` | 4 | DNS 不存在、404、连接被重置 |
 | `needs_manual_port` | 1 | XPath 规则，阅读 APP 专有语法 |
@@ -37,9 +37,13 @@
   `https://comic.mkzcdn.com/chapter/content/v1/?chapter_id=…&comic_id=…` 返回
   `{"code":"302","message":"用户未登录"}`。书源之所以能用，是因为 JSON 里带了登录 Cookie，
   这类凭据不能进公开仓库，因此标记 `needs_login` 而不是"已转换"。
-- **包子漫画（10）**：`cn.bzmanga.com` 搜索返回 13 条、详情页字段完整，但章节列表 754 个 `<a>`
-  的 href 全部相同（`/user/page_direct?...chapter_slot=729`），说明目录由前端接口渲染，
-  需要还原章节接口才能实现，不能只抄选择器。
+- **包子漫画（10）**：`cn.bzmanga.com` 首页 144 条、搜索 85 条。章节目录的 `<a>` 全部指向
+  `/user/page_direct?comic_id=…&section_slot=…&chapter_slot=…`，初看像"所有链接相同"，实际靠
+  `section_slot/chapter_slot` 两个查询参数区分；直接按 DOM 顺序取会得到回文序列
+  （`729…0…729`），因此扩展按两个 slot 的数值重排，得到 730 章的正确顺序。
+- **腐漫（23）**：正文页仍在线（列表 25 部、章节 160 条可解析），但封面与全部阅读页图片都指向
+  `img.uumanhua.xyz`，该域名与根域 `uumanhua.xyz` 在阿里 DNS / DNSPod 均返回 NXDOMAIN，
+  主域也不代理图片。属站点资源失效，代码保留在 `quarantine/fuman/`，不上架。
 - **咚漫（42）**：`m.dongmanmanhua.cn` 搜索路径 404，上游 `zh/dongmanmanhua` 使用
   `www.dongmanmanhua.cn`，因此归入 `covered_upstream`。
 - **漫画小屋（37）**：`m.dm.com` DNS 解析失败，属失效源。

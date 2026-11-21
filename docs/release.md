@@ -57,16 +57,17 @@ Settings → Secrets and variables → Actions → New repository secret：
 Settings → Pages → Build and deployment → Source: **Deploy from a branch** →
 Branch: `gh-pages` / `root`。首次需要等 `publish.yml` 跑完生成 `gh-pages` 分支后再选。
 
-最终仓库地址：
+最终仓库地址（Pages 开关未开启，先用直读地址，内容与 Pages 完全一致）：
 
 ```
-https://serena-01234.github.io/mihon-comic-sources/index.min.json
+https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json
+https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json
 ```
 
 ## 5. 本地已验证的结果
 
 ```
-$ apksigner verify --print-certs -v tachiyomi-zh.fuman-v1.6.1.apk
+$ apksigner verify --print-certs -v tachiyomi-zh.hmmfk-v1.6.1.apk
 Verifies
 Verified using v2 scheme (APK Signature Scheme v2): true
 V2 Signer: certificate DN: CN=Serena-01234 Mihon Extensions, O=Serena-01234, C=CN
@@ -76,13 +77,13 @@ V2 Signer: certificate SHA-256 digest: 3931aba9b7cb45003a4f1d5ce3e6f648613ab0cfc
 manifest 关键字段（由 `kei.plugins.extension` 生成）：
 
 ```
-package="eu.kanade.tachiyomi.extension.zh.fuman" versionCode="106001" versionName="1.6.1"
+package="eu.kanade.tachiyomi.extension.zh.hmmfk" versionCode="106001" versionName="1.6.1"
 meta-data tachiyomix.extensionLib = 1.6
 meta-data tachiyomi.extension.nsfw = 1
-source id = 6069000430461476784
+source id = 1138712607578143340
 ```
 
-## 6. CI 流程（`.github/workflows/publish.yml`）
+## 6. CI 流程（存档于 `docs/ci-workflow.yml`）
 
 1. 检出本仓库；
 2. 按 `UPSTREAM_SHA` 拉取 Keiyoushi 构建系统（固定 commit，避免上游漂移）；
@@ -93,3 +94,6 @@ source id = 6069000430461476784
 7. `scripts/build_repo.py` 从构建产物（merged manifest + KSP `Generated.kt`）生成索引，
    指纹从 keystore 现算；
 8. 发布到 `gh-pages`，并把 APK 附到 `build-<run_number>` Release。
+
+> GitHub App 没有 `workflows` 权限，工作流文件无法由 App 推送，因此存为 `docs/ci-workflow.yml`。
+> 手动启用：复制到 `.github/workflows/publish.yml` 后提交（需具备 workflows 权限的账号）。

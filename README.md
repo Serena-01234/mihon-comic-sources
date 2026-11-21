@@ -14,17 +14,17 @@
 | --- | --- |
 | 扩展仓库结构（`index.min.json` + `repo.json` + `apk/` + `icon/`） | 已生成，脚本 `scripts/build_repo.py` 与构建产物一致 |
 | 签名 | 本地用 4096 位 RSA 证书签名发布版 APK，证书 SHA-256 `3931aba9…7d7db2`，写入 `repo.json` 的 `signingKeyFingerprint` |
-| 腐漫（fumanmanhua.com） | **已编译 + 逐项实测**：搜索 / 详情 / 章节 / 图片页 |
-| 连连看漫画（hmmfk.com） | **已编译 + 19 项自测全绿**：列表 27 / 搜索 16 / 章节 38 / 图片 10 张 200 |
-| 包子漫画简中（cn.bzmanga.com） | **已编译 + 19 项自测全绿**：首页 144 / 搜索 85 / 章节 730 / 图片 200 webp |
-| 其余 55 条 | 逐条给出处理结论与证据，见 `catalog/conversion-status.csv` |
+| 连连看漫画（hmmfk.com） | **已编译 + 9 项自测全绿**：列表 27 / 搜索 16 / 章节 38 / 图片 10 张 200 webp |
+| 包子漫画简中（cn.bzmanga.com） | **已编译 + 10 项自测全绿**：首页 144 / 搜索 85 / 章节 730 / 图片 200 webp |
+| 腐漫（fumanmanhua.com） | **已移植但站点图片域名失效，已隔离不上架**：`img.uumanhua.xyz` NXDOMAIN，见 `quarantine/fuman/QUARANTINE.md` |
+| 其余 56 条 | 逐条给出处理结论与证据，见 `catalog/conversion-status.csv` |
 
 ## 安装步骤
 
 1. Mihon 0.21.3 → 设置 → 浏览 → 扩展 → 扩展仓库 → 添加：
    `https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
    （若 jsDelivr 慢，换 `https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json`）
-2. 在扩展列表中找到 **Fuman**（NSFW）、**Lianliankan**（NSFW）、**Baozi Manhua CN** 并安装。
+2. 在扩展列表中找到 **Lianliankan**（NSFW）、**Baozi Manhua CN** 并安装。
 3. 若同时需要看漫、拷贝漫画、快看、咚漫、再漫画、漫画小屋、酸奶漫画等，另外添加官方仓库
    `https://github.com/keiyoushi/extensions/raw/repo/index.pb`（见 `docs/upstream-reuse.md`）。
 
@@ -42,7 +42,8 @@
 
 | status | 含义 | 数量 |
 | --- | --- | --- |
-| `converted_verified` | 已写成 Kotlin、release APK 编译通过、四个环节对线上 DOM 自测通过 | 3 |
+| `converted_verified` | 已写成 Kotlin、release APK 编译通过、四个环节对线上 DOM 自测通过 | 2 |
+| `converted_site_broken` | 已写成 Kotlin 并编译通过，但站点关键资源（图片域名）失效，隔离不上架 | 1 |
 | `covered_upstream` | Keiyoushi 已有同域名模块，安装上游即可（已逐条比对 baseUrl/host） | 14 |
 | `portable_pending` | 规则可静态解析且搜索实测有结果，尚未写成 Kotlin | 0 |
 | `needs_login` | 章节或搜索接口强制登录（实测返回"用户未登录"） | 9 |
@@ -57,13 +58,15 @@
 ## 仓库结构
 
 ```
-src/zh/fuman/                 # 原生 Kotlin 扩展（唯一已验证模块）
+src/zh/hmmfk/                 # 原生 Kotlin 扩展（连连看，NSFW）
+src/zh/baozimhcn/             # 原生 Kotlin 扩展（包子漫画简中）
+quarantine/fuman/             # 腐漫：代码保留，站点图片域名失效，不上架
 scripts/build_repo.py         # 从构建产物生成 index.min.json / repo.json
 catalog/conversion-status.csv # 58 条源逐条结论 + 证据
 docs/source-audit.md          # 审计方法与实测数据
 docs/upstream-reuse.md        # 14 条上游可复用映射（已核对 baseUrl）
 docs/release.md               # 签名、索引、Pages 发布与 Secrets 配置
-.github/workflows/publish.yml # 编译 → 验签 → 生成索引 → 发布 gh-pages / Release
+docs/ci-workflow.yml          # CI 工作流存档（App 无 workflows 权限，需手动放入 .github/workflows）
 ```
 
 ## 本地构建
@@ -81,7 +84,7 @@ s=s.replace("loadAllIndividualExtensions()","\n".join(f'include("{m}")' for m in
 open(p,"w").write(s)
 PY
 cd upstream
-KEY_STORE_PASSWORD=... ALIAS=mihoncomics KEY_PASSWORD=... ./gradlew :src:zh:fuman:assembleRelease
+KEY_STORE_PASSWORD=... ALIAS=mihoncomics KEY_PASSWORD=... ./gradlew :src:zh:hmmfk:assembleRelease
 ```
 
 ## 许可与归属

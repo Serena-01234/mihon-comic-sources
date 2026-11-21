@@ -21,7 +21,7 @@ id,name,base_url,priority,status,upstream_module,evidence
 20,🎨拷贝漫画,https://www.mangacopy.com,P1,covered_upstream,kaobeimanhua,Keiyoushi src/zh/kaobeimanhua 的 baseUrl/host 与本条一致，直接安装上游扩展即可
 21,🎨滴滴漫画,https://www.didimh.com,P2,needs_js,,搜索/列表规则含 @js 脚本或 JS 渲染
 22,🎨知音漫客,https://m.zymk.cn,P1,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
-23,🎨🔞腐漫,https://www.fumanmanhua.com,P2,converted_verified,src/zh/fuman,原生 Kotlin 扩展已编译并逐项实测：搜索/详情/章节/图片
+23,🎨🔞腐漫,https://www.fumanmanhua.com,P2,converted_site_broken,quarantine/fuman,2026-11-21 复测：正文页可解析（首页25部/章节160条），但封面与阅读页图片全部指向 img.uumanhua.xyz；该域名及根域 uumanhua.xyz 在阿里DNS与DNSPod DoH 均为 NXDOMAIN，主域不代理图片（404），模块已隔离不上架
 24,🎨新人漫画,https://xapi.xinmanhua.net,P2,needs_api,,xapi.xinmanhua.net 同上，需还原 App 接口
 25,🎨🔞污漫天堂,https://wumtt.com,P2,dead,,wumtt.com 连接被重置
 26,🎨🔞大人漫画,https://drmh3.com,P2,empty,,搜索请求成功但规则未命中结果（选择器失效或需 POST/特殊参数）
