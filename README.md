@@ -2,9 +2,12 @@
 
 把原始 `shareBookSource.json`（58 条阅读 APP 书源）迁移为 **Mihon 0.21.3** 可用的原生 Kotlin 扩展仓库。
 
-- 扩展仓库地址（二选一，都能直接加进 Mihon）：
-  - 主：`https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
-  - 备：`https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json`
+- 扩展仓库地址（任选其一，都能直接加进 Mihon）：
+  - 主：`https://fastly.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
+  - 备：`https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
+  - 直读：`https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json`
+
+> jsDelivr 各节点缓存独立，更新后最长 12 小时收敛。若主地址仍显示旧内容，换备地址或直读地址。
 - 目标版本：Mihon 0.21.3（extensions-lib 1.6，`SUPPORTED_LIB_VERSIONS = [1.4, 1.6]`）
 - 本项目只提供**自己维护的扩展**；上游 Keiyoushi 已有的源，直接用 Keiyoushi 仓库，不重复造轮子。
 
@@ -22,8 +25,9 @@
 ## 安装步骤
 
 1. Mihon 0.21.3 → 设置 → 浏览 → 扩展 → 扩展仓库 → 添加：
-   `https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
-   （若 jsDelivr 慢，换 `https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json`）
+   `https://fastly.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
+   （备：`https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`；
+   直读：`https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json`）
 2. 在扩展列表中找到 **Lianliankan**（NSFW）、**Baozi Manhua CN** 并安装。
 3. 若同时需要看漫、拷贝漫画、快看、咚漫、再漫画、漫画小屋、酸奶漫画等，另外添加官方仓库
    `https://github.com/keiyoushi/extensions/raw/repo/index.pb`（见 `docs/upstream-reuse.md`）。
