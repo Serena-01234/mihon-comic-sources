@@ -2,8 +2,9 @@
 
 把原始 `shareBookSource.json`（58 条阅读 APP 书源）迁移为 **Mihon 0.21.3** 可用的原生 Kotlin 扩展仓库。
 
-- 扩展仓库地址（添加后即可在 Mihon 内安装/更新）：
-  `https://serena-01234.github.io/mihon-comic-sources/index.min.json`
+- 扩展仓库地址（二选一，都能直接加进 Mihon）：
+  - 主：`https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
+  - 备：`https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json`
 - 目标版本：Mihon 0.21.3（extensions-lib 1.6，`SUPPORTED_LIB_VERSIONS = [1.4, 1.6]`）
 - 本项目只提供**自己维护的扩展**；上游 Keiyoushi 已有的源，直接用 Keiyoushi 仓库，不重复造轮子。
 
@@ -21,13 +22,18 @@
 ## 安装步骤
 
 1. Mihon 0.21.3 → 设置 → 浏览 → 扩展 → 扩展仓库 → 添加：
-   `https://serena-01234.github.io/mihon-comic-sources/index.min.json`
+   `https://cdn.jsdelivr.net/gh/Serena-01234/mihon-comic-sources@gh-pages/index.min.json`
+   （若 jsDelivr 慢，换 `https://raw.githubusercontent.com/Serena-01234/mihon-comic-sources/gh-pages/index.min.json`）
 2. 在扩展列表中找到 **Fuman**（NSFW）、**Lianliankan**（NSFW）、**Baozi Manhua CN** 并安装。
 3. 若同时需要看漫、拷贝漫画、快看、咚漫、再漫画、漫画小屋、酸奶漫画等，另外添加官方仓库
    `https://github.com/keiyoushi/extensions/raw/repo/index.pb`（见 `docs/upstream-reuse.md`）。
 
 > 仓库 URL 必须以 `/index.min.json` 结尾：Mihon 0.21.3 的 `ExtensionStoreService` 在读到 `[` 开头的
 > legacy 索引后，才会按 `index.min.json` → `repo.json` → `index.min.json` 的顺序完成仓库发现。
+> APK 地址由 `NetworkLegacyExtension` 按 `"$storeBaseUrl/apk/$apk"` 拼接，所以 `apk/` 子目录结构不能改。
+
+> 为什么不用 `serena-01234.github.io`：GitHub Pages 需要单独开通，当前 App 凭据没有 Pages 权限（API 返回 403）。
+> 仓库内容已全部在 `gh-pages` 分支上，raw/jsDelivr 直读同一份文件，效果等价；等 Pages 开关打开后原地址即可用。
 
 ## 为什么不是 58 个扩展
 
